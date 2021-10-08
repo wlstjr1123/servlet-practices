@@ -1,5 +1,12 @@
+<%@page import="com.douzone.vo.GuestBookVo"%>
+<%@page import="java.util.List"%>
+<%@page import="com.douzone.dao.GuestBookDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	GuestBookDao guestBookDao = new GuestBookDao();
+	List<GuestBookVo> list = guestBookDao.findAll();
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,16 +28,22 @@
 	</table>
 	</form>
 	<br>
+	<%
+		for (int i = 0; i < list.size(); i++) {
+	 %>
 	<table width=510 border=1>
 		<tr>
-			<td>[1]</td>
-			<td>안대혁</td>
-			<td>2013-01-15</td>
-			<td><a href="deleteform.jsp">삭제</a></td>
+			<td><%=i+1 %></td>
+			<td><%=list.get(i).getName() %></td>
+			<td><%=list.get(i).getReg_date() %></td>
+			<td><a href="deleteform.jsp?no=<%=list.get(i).getNo()%>">삭제</a></td>
 		</tr>
 		<tr>
-			<td colspan=4>안녕하세요</td>
+			<td colspan=4><%=list.get(i).getMessage() %></td>
 		</tr>
 	</table>
+	<%
+		}
+	%>
 </body>
 </html>
