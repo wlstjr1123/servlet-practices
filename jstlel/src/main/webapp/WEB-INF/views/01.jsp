@@ -8,6 +8,7 @@
 </head>
 <body>
 	<h4>값출력</h4>
+	${requestScope.iVal } <br/>
 	${iVal } <br>
 	${lVal } <br>
 	${fVal } <br>
